@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu_titanrtx_shared_course
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=ExampleJob
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=04:00:00
+#SBATCH --mem=102000M
+#SBATCH --output=slurm_output_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+#32000M
+
+
+# Your job starts in the directory where you call sbatch
+cd $HOME/code/proto2proto-main/
+# Activate your environment
+source activate myenv
+
+# Run your code
+# RANDOMN=$$
+NOTRANDOM=org
+
+runName=eval_setting
+newRun=False
+serviceType=evaluate
+ablationType=Resnet50_18_birds
+
+# print working directory
+# echo "$PWD"
+
+echo "Evaluating resnet18"
+
+ 
+mkdir Experiments/$ablationType/$runName/$NOTRANDOM
+expOut=Experiments/$ablationType/$runName/$NOTRANDOM/$NOTRANDOM.out
+# errorOut=Experiments/$ablationType/$runName/$RANDOM/error+$RANDOMN.out
+
+cp Experiments/$ablationType/$runName/args.yaml Experiments/$ablationType/$runName/$NOTRANDOM/args.yaml
+
+# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
+
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 

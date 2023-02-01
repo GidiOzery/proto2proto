@@ -1,0 +1,52 @@
+dataDir: fill
+newRun: false
+runName: Resnet50_18_birds
+serviceName: protopnet_evaluate
+dataConfig:
+  imgSize: 224
+  loaderName: cub
+  augment: false
+
+  trainDir: data/CUB_200_2011/dataset/train_crop
+  projectDir: data/CUB_200_2011/dataset
+  testDir: data/CUB_200_2011/dataset/test_crop
+
+settingsConfig:
+  imgSize: 224
+  bigNet: true
+  numFeatures: 256
+  prototypicalModel: protopnet
+  PrototypeActivationFunction: log
+  useCheckpointOptimizer: true
+  Teacherbackbone:
+    prototypicalModel: protopnet
+    name: resnet34
+    pretrained: true
+    loadPath: /home/lcur0853/code/proto2proto-main/ResNet34_mod_layers.pt # Path-to-teacher-model
+    # loadPath: null # Path-to-teacher-model
+
+  StudentBaselinebackbone:
+    prototypicalModel: protopnet
+    name: resnet18
+    pretrained: true
+    loadPath: /home/lcur0853/code/proto2proto-main/ResNet18_003_mod_layers.pt # Path-to-student-baseline-model
+  StudentKDbackbone:
+    prototypicalModel: protopnet
+    name: resnet18
+    pretrained: true
+    loadPath: /home/lcur0853/code/proto2proto-main/ResNet18_003_mod_layers.pt # Path-to-student-kd-model
+  protoPNet:
+    numPrototypes: 2000
+    classSpecific: true
+    W1: 1
+    H1: 1
+  train:
+    seed: 12
+common:
+  cuda: true
+  mgpus: false
+  numWorkers: 1
+  testBatchSize: 1
+  testNumWorkers: 0
+  trainBatchSize: 4
+  trainNumWorkers: 1

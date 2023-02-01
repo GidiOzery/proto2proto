@@ -1,0 +1,94 @@
+dataDir: fill
+newRun: false
+runName: kd_Resnet50_18
+serviceName: protopnet_kd
+dataConfig:
+  imgSize: 224
+  loaderName: cub
+  augment: false
+
+  trainDir: data/CUB_200_2011/dataset/train_crop
+  projectDir: data/CUB_200_2011/dataset
+  testDir: data/CUB_200_2011/dataset/test_crop
+
+settingsConfig:
+  imgSize: 224
+  numFeatures: 256
+  PrototypeActivationFunction: log
+  prototypicalModel: protopnet
+  useCheckpointOptimizer: true
+  tauTrain: 100
+  backbone:
+    name: resnet50
+    pretrained: true
+    featureDim: 2048
+    prototypicalModel: protopnet
+    # loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/model.pt
+    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/protopnet_45.pth
+
+    # loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/10_18push07958.pth
+
+    # loadPath: protopnet_1.pth
+
+    #Add path to teacher model
+  target:
+    name: resnet18
+    pretrained: true
+    loadPath: null
+    featureDim: 512
+    prototypicalModel: protopnet
+  protoPNet:
+    numPrototypes: 2000
+    classSpecific: True
+    W1: 1
+    H1: 1
+  stage1LossList:
+    addOnLoss:
+      consider: true
+      weight: 10.0
+    protoLoss:
+      consider: true
+      weight: 10.0
+  stage2LossList:
+    crossEntropy:
+      consider: true
+      weight: 1.0
+    clusterSep:
+      consider: true
+      clusterWeight: 1.0
+      sepWeight: -0.08
+    l1:
+      consider: true
+      weight: 1.0e-04
+    addOnLoss:
+      consider: true
+      weight: 10.0
+    protoLoss:
+      consider: true
+      weight: 10.0
+  train:
+    seed: 4004
+    maxEpochs: 80
+    lrNet: 0.0001
+    lrBlock: 0.001
+    lrProto: 0.01
+    lrLastLayer: 0.0007
+    weightDecay: 0.05
+    gamma: 0.1
+    stepSize: 4
+    stepStart: 16
+    warmEpochs: 5
+    stage1Epochs: 0
+    pushStart: 50
+    evalEpoch: 1
+    saveEpoch: 5
+    optimizer: Adam
+    useTensorboard: true
+common:
+  cuda: true
+  mgpus: false
+  numWorkers: 1
+  testBatchSize: 100
+  testNumWorkers: 0
+  trainBatchSize: 128
+  trainNumWorkers: 1

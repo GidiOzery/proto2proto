@@ -12,6 +12,8 @@
 ```
 conda env create -f environment.yml -n myenv python=3.6
 conda activate myenv
+source activate myenv
+
 ```
 
 ## Preparing Dataset

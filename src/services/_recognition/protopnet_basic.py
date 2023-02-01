@@ -73,6 +73,12 @@ class Trainer(object):
         push_start = self.manager.settingsConfig.train.pushStart
         push_epochs = [ii for ii in range(push_start, max_epochs, 10)]
 
+        if max_epochs == 0:
+
+            result = evaluate.evaluate_model(self.model, self.dataset_loader.test_loader,
+                                         mgpus=self.mgpus)
+            print(result, "RESULT OF EPOCH 0")
+            
         if self.mgpus:
             # Optimize class distributions in leafs
             self.eye = torch.eye(self.model.module._num_classes)
@@ -80,7 +86,6 @@ class Trainer(object):
             self.eye = torch.eye(self.model._num_classes)
 
         for epoch in tqdm(range(self.start_epoch, max_epochs + 1)):
-
             if epoch <= warm_epochs:
                 warm_only(self.model, self.trainable_param_names, self.mgpus)
                 self.train_epoch(epoch, self.warm_optimizer)
@@ -96,6 +101,8 @@ class Trainer(object):
             if epoch % self.manager.settingsConfig.train.evalEpoch == 0:
                 result = self.evaluate(epoch)
                 print(epoch, result)
+
+
 
             if epoch in push_epochs:
                 self.push(epoch)
@@ -129,6 +136,14 @@ class Trainer(object):
         ys = ys.cuda()
         xs = xs.cuda()
         ys_pred, info = self.model.forward(xs)
+
+        # personally added
+        # vRAM_in_bytes = torch.cuda.memory_allocated(None)
+        # bytes_to_mb_conv = 1024.0*1024.0
+        # vRAM_in_bytes = vRAM_in_bytes / bytes_to_mb_conv
+        # print()
+        # print(f"{vRAM_in_bytes} AMOUNT OF VRAM IN MB")
+        # print()
 
         loss_list = self.manager.settingsConfig.lossList
         total_loss = torch.tensor(0).cuda().float()

@@ -2,19 +2,30 @@ import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
-from .receptive_field import compute_proto_layer_rf_info_v2
+import sys
+sys.path.append('lib/protopnet')
+# print(sys.path, "SYSTEM PATH")
+from receptive_field import compute_proto_layer_rf_info_v2
 
 # img_size, prototype_shape, init_weights=True, prototype_activation_function='log',
 # add_on_layers_type='bottleneck', proto_layer_rf_info=""
 
 class PPNet(nn.Module):
 
-    def __init__(self, num_classes, feature_net, args):
+    def __init__(self, num_classes, feature_net, args, declare_num_features=None):
 
         super(PPNet, self).__init__()
 
         features_name = str(feature_net).upper()
-        num_features = args.numFeatures
+
+        # print(args.Teacherbackbone.name)
+        if declare_num_features != None:
+            num_features = declare_num_features
+        else:
+            num_features = args.numFeatures
+        # print(declare_num_features, "current model us using this num of features")
+        
+    
 
         if features_name.startswith('VGG') or features_name.startswith('RES'):
             first_add_on_layer_in_channels = \
@@ -32,7 +43,7 @@ class PPNet(nn.Module):
                                                 out_channels=num_features, kernel_size=1),
                                       nn.Sigmoid())
 
-        self.prototype_shape = (args.protoPNet.numPrototypes, args.numFeatures,
+        self.prototype_shape = (args.protoPNet.numPrototypes, num_features,
                                 args.protoPNet.W1, args.protoPNet.H1)
 
         self.num_prototypes = args.protoPNet.numPrototypes
@@ -68,6 +79,7 @@ class PPNet(nn.Module):
         self.features = feature_net
         self._add_on = add_on_layers
 
+        # print('THIS IS WHERE WE MUST CHANGE THE PROTOTYPE VECTORS!!!')
         self.prototype_vectors = nn.Parameter(torch.rand(self.prototype_shape),
                                               requires_grad=True)
 

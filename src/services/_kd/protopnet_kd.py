@@ -62,7 +62,7 @@ class Trainer(object):
             get_optimizer(self.model, manager.settingsConfig, mgpus=self.mgpus)
 
         last_paramlist = [
-            {'params': self.model.module.last_layer.parameters(), 'lr': manager.settingsConfig.train.lrLastLayer}
+            {'params': self.model.last_layer.parameters(), 'lr': manager.settingsConfig.train.lrLastLayer}
         ]
         self.last_optimizer = torch.optim.Adam(last_paramlist)
 
@@ -100,8 +100,8 @@ class Trainer(object):
 
         if self.mgpus:
             # Optimize class distributions in leafs
-            self.eye = torch.eye(self.model.module._num_classes)
-            self.model.module.last_layer.weight.data.copy_(self.teacher_model.module.last_layer.weight.data)
+            self.eye = torch.eye(self.model._num_classes)
+            self.model.last_layer.weight.data.copy_(self.teacher_model.last_layer.weight.data)
         else:
             self.eye = torch.eye(self.model._num_classes)
             self.model.last_layer.weight.data.copy_(self.teacher_model.last_layer.weight.data)
@@ -164,6 +164,12 @@ class Trainer(object):
         ys_pred, info = self.model.forward(xs)
         ys_pred_tchr, info_tchr = self.teacher_model.forward(xs)
 
+        # personally added
+        # vRAM_in_bytes = torch.cuda.memory_allocated(None)
+        # bytes_to_mb_conv = 1024.0*1024.0
+        # vRAM_in_bytes = vRAM_in_bytes / bytes_to_mb_conv
+        # print(vRAM_in_bytes, "AMOUNT OF VRAM IN MB")
+
         #Getting teacher/student distances:
         teacher_distances = info[3]
 
@@ -182,8 +188,8 @@ class Trainer(object):
         if hasattr(loss_list, "protoLoss") and loss_list.protoLoss.consider:
 
             if self.mgpus:
-                input1 = self.model.module.prototype_vectors
-                input2 = self.teacher_model.module.prototype_vectors
+                input1 = self.model.prototype_vectors
+                input2 = self.teacher_model.prototype_vectors
             else:
                 input1 = self.model.prototype_vectors
                 input2 = self.teacher_model.prototype_vectors
