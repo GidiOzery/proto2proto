@@ -40,9 +40,9 @@ expOut=Experiments/$ablationType/$runName/$NOTRANDOM/$RANDOM.out
 cp Experiments/$ablationType/$runName/args.yaml Experiments/$ablationType/$runName/$NOTRANDOM/args.yaml
 
 # CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $RANDOM $ablationType > $expOut 2>$errorOut
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $RANDOM $ablationType > $expOut 2>$errorOut
+# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $RANDOM $ablationType > $expOut 2>$errorOut
 
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
-CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
+# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $NOTRANDOM $ablationType
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $NOTRANDOM $ablationType
 
 

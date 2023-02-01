@@ -23,7 +23,7 @@ settingsConfig:
     pretrained: true
     featureDim: 2048
     prototypicalModel: protopnet
-    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/VGG19_VGG11_birds/teacher_VGG19/org/models/protopnet_1.pth #Add path to teacher model
+    loadPath: Experiments/VGG19_VGG11_birds/teacher_VGG19/org/models/protopnet_1.pth #Add path to teacher model
   target:
     name: vgg11
     pretrained: true

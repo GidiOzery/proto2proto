@@ -20,17 +20,17 @@ settingsConfig:
     prototypicalModel: protopnet
     name: vgg19
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/VGG19_VGG11_birds/teacher_VGG19/org/models/protopnet_1.pth # Path-to-teacher-model
+    loadPath: Experiments/VGG19_VGG11_birds/teacher_VGG19/org/models/protopnet_1.pth # Path-to-teacher-model
   StudentBaselinebackbone:
     prototypicalModel: protopnet
     name: vgg11
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/VGG19_VGG11_birds/student_VGG11/org/models/protopnet_1.pth # Path-to-student-baseline-model
+    loadPath: Experiments/VGG19_VGG11_birds/student_VGG11/org/models/protopnet_1.pth # Path-to-student-baseline-model
   StudentKDbackbone:
     prototypicalModel: protopnet
     name: vgg11
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/VGG19_VGG11_birds/kd_VGG11/org/models/protopnet_1.pth # Path-to-student-kd-model
+    loadPath: Experiments/VGG19_VGG11_birds/kd_VGG11/org/models/protopnet_1.pth # Path-to-student-kd-model
   protoPNet:
     #2000 depends on number of classes-> birds is 200 and cars is 196 -> 1960 when using cars
     numPrototypes: 2000

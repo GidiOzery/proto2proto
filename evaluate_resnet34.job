@@ -19,7 +19,6 @@ cd $HOME/code/proto2proto-main/
 source activate myenv
 
 # Run your code
-# RANDOMN=$$
 NOTRANDOM=org
 
 runName=eval_setting
@@ -39,6 +38,4 @@ expOut=Experiments/$ablationType/$runName/$NOTRANDOM/$NOTRANDOM.out
 
 cp Experiments/$ablationType/$runName/args.yaml Experiments/$ablationType/$runName/$NOTRANDOM/args.yaml
 
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
-
-CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $NOTRANDOM $ablationType

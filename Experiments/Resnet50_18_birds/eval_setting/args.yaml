@@ -22,19 +22,19 @@ settingsConfig:
     prototypicalModel: protopnet
     name: resnet34
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/ResNet34_mod_layers.pt # Path-to-teacher-model
+    loadPath: ResNet34_mod_layers.pt # Path-to-teacher-model
     # loadPath: null # Path-to-teacher-model
 
   StudentBaselinebackbone:
     prototypicalModel: protopnet
     name: resnet18
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/ResNet18_003_mod_layers.pt # Path-to-student-baseline-model
+    loadPath: ResNet18_003_mod_layers.pt # Path-to-student-baseline-model
   StudentKDbackbone:
     prototypicalModel: protopnet
     name: resnet18
     pretrained: true
-    loadPath: /home/lcur0853/code/proto2proto-main/ResNet18_003_mod_layers.pt # Path-to-student-kd-model
+    loadPath: ResNet18_003_mod_layers.pt # Path-to-student-kd-model
   protoPNet:
     numPrototypes: 2000
     classSpecific: true

@@ -1,22 +1,0 @@
-Baseline resnet18 Cubs
-mkdir: cannot create directory ‘Experiments/Resnet50_18_birds/student_Resnet18/org’: File exists
-['/home/lcur0853/code/proto2proto-main', '/home/lcur0853/.conda/envs/myenv/lib/python36.zip', '/home/lcur0853/.conda/envs/myenv/lib/python3.6', '/home/lcur0853/.conda/envs/myenv/lib/python3.6/lib-dynload', '/home/lcur0853/.conda/envs/myenv/lib/python3.6/site-packages', '/home/lcur0853/code/proto2proto-main/lib/protopnet'] SYSTEM PATH
-['/home/lcur0853/code/proto2proto-main', '/home/lcur0853/.conda/envs/myenv/lib/python36.zip', '/home/lcur0853/.conda/envs/myenv/lib/python3.6', '/home/lcur0853/.conda/envs/myenv/lib/python3.6/lib-dynload', '/home/lcur0853/.conda/envs/myenv/lib/python3.6/site-packages', '/home/lcur0853/code/proto2proto-main/lib/protopnet', '/home/lcur0853/code/proto2proto-main/lib/protopnet'] SYSTEM PATH
-/home/lcur0853/.conda/envs/myenv/lib/python3.6/site-packages/ray/autoscaler/_private/cli_logger.py:61: FutureWarning: Not all Ray CLI dependencies were found. In Ray 1.4+, the Ray CLI, autoscaler, and dashboard will only be usable via `pip install 'ray[default]'`. Please update your install command.
-  "update your install command.", FutureWarning)
-
-
-************************* student_Resnet18 *************************
-
-
-Num classes (k) =  200
-checkpoint is None
-Using GPU 222
-True
-0
-NVIDIA TITAN RTX
-  0%|          | 0/58 [00:00<?, ?it/s]  2%|▏         | 1/58 [00:00<00:33,  1.68it/s]  3%|▎         | 2/58 [00:00<00:25,  2.19it/s]  5%|▌         | 3/58 [00:01<00:22,  2.49it/s]  7%|▋         | 4/58 [00:01<00:21,  2.55it/s]  9%|▊         | 5/58 [00:02<00:20,  2.52it/s] 10%|█         | 6/58 [00:02<00:20,  2.48it/s] 12%|█▏        | 7/58 [00:02<00:20,  2.46it/s] 14%|█▍        | 8/58 [00:03<00:20,  2.46it/s] 16%|█▌        | 9/58 [00:03<00:20,  2.43it/s] 17%|█▋        | 10/58 [00:04<00:19,  2.42it/s] 19%|█▉        | 11/58 [00:04<00:19,  2.44it/s] 21%|██        | 12/58 [00:04<00:18,  2.48it/s] 22%|██▏       | 13/58 [00:05<00:18,  2.49it/s] 24%|██▍       | 14/58 [00:05<00:17,  2.55it/s] 26%|██▌       | 15/58 [00:06<00:16,  2.64it/s] 28%|██▊       | 16/58 [00:06<00:16,  2.59it/s] 29%|██▉       | 17/58 [00:06<00:16,  2.56it/s] 31%|███       | 18/58 [00:07<00:15,  2.50it/s] 33%|███▎      | 19/58 [00:07<00:16,  2.43it/s] 34%|███▍      | 20/58 [00:08<00:15,  2.47it/s] 36%|███▌      | 21/58 [00:08<00:15,  2.46it/s] 38%|███▊      | 22/58 [00:08<00:14,  2.43it/s] 40%|███▉      | 23/58 [00:09<00:14,  2.46it/s] 41%|████▏     | 24/58 [00:09<00:13,  2.50it/s] 43%|████▎     | 25/58 [00:10<00:13,  2.46it/s] 45%|████▍     | 26/58 [00:10<00:12,  2.49it/s] 47%|████▋     | 27/58 [00:10<00:12,  2.46it/s] 48%|████▊     | 28/58 [00:11<00:12,  2.46it/s] 50%|█████     | 29/58 [00:11<00:11,  2.44it/s] 52%|█████▏    | 30/58 [00:12<00:11,  2.47it/s] 53%|█████▎    | 31/58 [00:12<00:10,  2.47it/s] 55%|█████▌    | 32/58 [00:12<00:10,  2.49it/s] 57%|█████▋    | 33/58 [00:13<00:09,  2.59it/s] 59%|█████▊    | 34/58 [00:13<00:09,  2.58it/s] 60%|██████    | 35/58 [00:14<00:08,  2.60it/s] 62%|██████▏   | 36/58 [00:14<00:08,  2.62it/s] 64%|██████▍   | 37/58 [00:14<00:07,  2.66it/s] 66%|██████▌   | 38/58 [00:15<00:07,  2.65it/s] 67%|██████▋   | 39/58 [00:15<00:07,  2.66it/s] 69%|██████▉   | 40/58 [00:15<00:06,  2.71it/s] 71%|███████   | 41/58 [00:16<00:06,  2.62it/s] 72%|███████▏  | 42/58 [00:16<00:06,  2.61it/s] 74%|███████▍  | 43/58 [00:17<00:05,  2.54it/s] 76%|███████▌  | 44/58 [00:17<00:05,  2.58it/s] 78%|███████▊  | 45/58 [00:17<00:04,  2.61it/s] 79%|███████▉  | 46/58 [00:18<00:04,  2.63it/s] 81%|████████  | 47/58 [00:18<00:04,  2.62it/s] 83%|████████▎ | 48/58 [00:19<00:03,  2.66it/s] 84%|████████▍ | 49/58 [00:19<00:03,  2.64it/s] 86%|████████▌ | 50/58 [00:19<00:02,  2.70it/s] 88%|████████▊ | 51/58 [00:20<00:02,  2.72it/s] 90%|████████▉ | 52/58 [00:20<00:02,  2.73it/s] 91%|█████████▏| 53/58 [00:20<00:01,  2.65it/s] 93%|█████████▎| 54/58 [00:21<00:01,  2.59it/s] 95%|█████████▍| 55/58 [00:21<00:01,  2.54it/s] 97%|█████████▋| 56/58 [00:22<00:00,  2.53it/s] 98%|█████████▊| 57/58 [00:22<00:00,  2.57it/s]100%|██████████| 58/58 [00:22<00:00,  2.70it/s]100%|██████████| 58/58 [00:22<00:00,  2.54it/s]
-{'accuracy': 0.005005177770107007} RESULT OF EPOCH 0
-0it [00:00, ?it/s]0it [00:00, ?it/s]
-
-time elapsed for training: 22.868 seconds -> 0.381 minutes -> 0.006 hours.

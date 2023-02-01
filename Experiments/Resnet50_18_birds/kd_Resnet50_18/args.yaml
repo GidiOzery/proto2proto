@@ -23,10 +23,10 @@ settingsConfig:
     pretrained: true
     featureDim: 2048
     prototypicalModel: protopnet
-    # loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/model.pt
-    loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/protopnet_45.pth
+    # loadPath: Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/model.pt
+    loadPath: Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/protopnet_45.pth
 
-    # loadPath: /home/lcur0853/code/proto2proto-main/Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/10_18push07958.pth
+    # loadPath: Experiments/Resnet50_18_birds/teacher_Resnet50/org/models/10_18push07958.pth
 
     # loadPath: protopnet_1.pth
 

@@ -8,7 +8,7 @@ from collections import OrderedDict
 
 import sys
 
-sys.path.append('/home/lcur0853/code/proto2proto-main/lib/protopnet')
+sys.path.append('lib/protopnet')
 print(sys.path, "SYSTEM PATH")
 
 # from model import *
@@ -42,7 +42,7 @@ def init_proto_model(manager, classes, backbone, declare_num_features=None):
     # print()
 
     # print("PRINTING THE FULLY PRETRAINED MODEL LAYERS")
-    # state_dictionary = torch.load("/home/lcur0853/code/proto2proto-main/model.pt")
+    # state_dictionary = torch.load("model.pt")
     # for count, param_tensor in enumerate( state_dictionary ):
     #     print(count, param_tensor, "\t", state_dictionary[param_tensor].size())
     # print("FINISHED PRINTING THE FULLY PRETRAINED MODEL LAYERS")
@@ -83,11 +83,11 @@ def init_proto_model(manager, classes, backbone, declare_num_features=None):
     # backbone model to either resnet18 or resnet34; additionally, set   numFeatures: 128 for resnet18 and   numFeatures: 256 for resnet34
     # and ofc set use_ptrained to true.
 
-        # model.load_state_dict(torch.load("/home/lcur0853/code/proto2proto-main/ResNet34_mod_layers.pt"))
+        # model.load_state_dict(torch.load("ResNet34_mod_layers.pt"))
         # proto_vec = model.prototype_vectors
 
 
-        model.load_state_dict(torch.load("/home/lcur0853/code/proto2proto-main/ResNet18_003_mod_layers.pt"))
+        model.load_state_dict(torch.load("ResNet18_003_mod_layers.pt"))
         
         # proto_vec_2 = model.prototype_vectors
         # print("cheching if proto vectors have been updated")

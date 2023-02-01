@@ -19,7 +19,6 @@ cd $HOME/code/proto2proto-main/
 source activate myenv
 
 # Run your code
-# RANDOMN=$$
 NOTRANDOM=org
 
 runName=kd_VGG11
@@ -27,22 +26,13 @@ newRun=False
 serviceType=kd
 ablationType=VGG19_VGG11_birds
 
-# print working directory
-# echo "$PWD"
-
 echo "KD VGG11 Cubs"
  
 mkdir Experiments/$ablationType/$runName/$NOTRANDOM
 
 expOut=Experiments/$ablationType/$runName/$NOTRANDOM/$RANDOM.out
-# errorOut=Experiments/$ablationType/$runName/$RANDOM/error+$RANDOMN.out
 
 cp Experiments/$ablationType/$runName/args.yaml Experiments/$ablationType/$runName/$NOTRANDOM/args.yaml
-
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $RANDOM $ablationType > $expOut 2>$errorOut
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $RANDOM $ablationType > $expOut 2>$errorOut
-
-# CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
-CUDA_VISIBLE_DEVICES=0,1,2,3 python -u /home/lcur0853/code/proto2proto-main/main.py $runName $newRun $serviceType $NOTRANDOM $ablationType 
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u main.py $runName $newRun $serviceType $NOTRANDOM $ablationType
 
 
