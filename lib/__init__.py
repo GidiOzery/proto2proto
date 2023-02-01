@@ -40,7 +40,12 @@ def init_proto_model(manager, classes, backbone):
         model = nn.DataParallel(model)
 
     if manager.common.cuda > 0:
-        print("Using GPU")
+        print("Using GPU 222")
         model.cuda()
+
+        print(torch.cuda.is_available())
+        device = torch.cuda.current_device()
+        print(device)
+        print(torch.cuda.get_device_name(device))
 
     return model, checkpoint, trainable_param_names

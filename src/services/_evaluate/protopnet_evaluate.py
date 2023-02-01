@@ -57,9 +57,9 @@ class Service(object):
                 ys = ys.cuda()
                 xs = xs.cuda()
 
-                teacher_distances, _, _ = self.teacher_model.module.prototype_distances(xs)
-                stu_kd_distances, _, _ = self.student_kd_model.module.prototype_distances(xs)
-                stu_baseline_distances, _, _ = self.student_baseline_model.module.prototype_distances(xs)
+                teacher_distances, _, _ = self.teacher_model.prototype_distances(xs)
+                stu_kd_distances, _, _ = self.student_kd_model.prototype_distances(xs)
+                stu_baseline_distances, _, _ = self.student_baseline_model.prototype_distances(xs)
 
                 teacher_scores, teacher_indices = F.max_pool2d(-teacher_distances,
                                                   kernel_size=(teacher_distances.size()[2],
@@ -74,23 +74,23 @@ class Service(object):
                                                                     stu_baseline_distances.size()[3]),
                                                        return_indices=True)
 
-                teacher_indices = teacher_indices.view(self.teacher_model.module.num_prototypes)
-                teacher_scores = teacher_scores.view(self.teacher_model.module.num_prototypes)
-                teachers_activations = self.teacher_model.module.distance_2_similarity(-teacher_scores)
+                teacher_indices = teacher_indices.view(self.teacher_model.num_prototypes)
+                teacher_scores = teacher_scores.view(self.teacher_model.num_prototypes)
+                teachers_activations = self.teacher_model.distance_2_similarity(-teacher_scores)
                 teacher_scores = teacher_scores.detach().cpu().numpy().tolist()
                 teacher_indices = teacher_indices.detach().cpu().numpy().tolist()
                 teachers_activations = teachers_activations.detach().cpu().numpy().tolist()
 
-                stu_kd_indices = stu_kd_indices.view(self.student_kd_model.module.num_prototypes)
-                stu_kd_scores = stu_kd_scores.view(self.student_kd_model.module.num_prototypes)
-                stu_kd_activations = self.student_kd_model.module.distance_2_similarity(-stu_kd_scores)
+                stu_kd_indices = stu_kd_indices.view(self.student_kd_model.num_prototypes)
+                stu_kd_scores = stu_kd_scores.view(self.student_kd_model.num_prototypes)
+                stu_kd_activations = self.student_kd_model.distance_2_similarity(-stu_kd_scores)
                 stu_kd_scores = stu_kd_scores.detach().cpu().numpy().tolist()
                 stu_kd_indices = stu_kd_indices.detach().cpu().numpy().tolist()
                 stu_kd_activations = stu_kd_activations.detach().cpu().numpy().tolist()
 
-                stu_baseline_indices = stu_baseline_indices.view(self.student_baseline_model.module.num_prototypes)
-                stu_baseline_scores = stu_baseline_scores.view(self.student_baseline_model.module.num_prototypes)
-                stu_baseline_activations = self.student_baseline_model.module.distance_2_similarity(-stu_baseline_scores)
+                stu_baseline_indices = stu_baseline_indices.view(self.student_baseline_model.num_prototypes)
+                stu_baseline_scores = stu_baseline_scores.view(self.student_baseline_model.num_prototypes)
+                stu_baseline_activations = self.student_baseline_model.distance_2_similarity(-stu_baseline_scores)
                 stu_baseline_scores = stu_baseline_scores.detach().cpu().numpy().tolist()
                 stu_baseline_indices = stu_baseline_indices.detach().cpu().numpy().tolist()
                 stu_baseline_activations = stu_baseline_activations.detach().cpu().numpy().tolist()
@@ -125,9 +125,9 @@ class Service(object):
     def evaluate(self, dist_th, teacher_data, stu_kd_data, stu_baseline_data, calc_pm=True):
 
         num_test_images = len(self.dataset_loader.test_loader)
-        teacher_prototypes = [[[],[]] for ii in range(self.teacher_model.module.num_prototypes)]
-        student_kd_prototypes = [[[],[]] for ii in range(self.student_kd_model.module.num_prototypes)]
-        student_baseline_prototypes = [[[],[]] for ii in range(self.student_baseline_model.module.num_prototypes)]
+        teacher_prototypes = [[[],[]] for ii in range(self.teacher_model.num_prototypes)]
+        student_kd_prototypes = [[[],[]] for ii in range(self.student_kd_model.num_prototypes)]
+        student_baseline_prototypes = [[[],[]] for ii in range(self.student_baseline_model.num_prototypes)]
 
         count_tchr = 0
         count_stu_kd = 0
@@ -194,8 +194,8 @@ class Service(object):
             return
 
         # Teacher, Student-kd IoU
-        mm = self.teacher_model.module.num_prototypes
-        nn = self.student_kd_model.module.num_prototypes
+        mm = self.teacher_model.num_prototypes
+        nn = self.student_kd_model.num_prototypes
 
         tchr_proto_id = ray.put(teacher_prototypes)
         stu_kd_proto_id = ray.put(student_kd_prototypes)
@@ -233,8 +233,8 @@ class Service(object):
         cost_kd_list = []
         for max_union in max_union_list:
 
-            mm = self.teacher_model.module.num_prototypes
-            nn = self.student_baseline_model.module.num_prototypes
+            mm = self.teacher_model.num_prototypes
+            nn = self.student_baseline_model.num_prototypes
             iou_matrix = np.zeros((mm,nn))
 
             obj_ids = []

@@ -1,0 +1,62 @@
+common:
+  cuda: true
+  mgpus: false
+  numWorkers: 1
+  testBatchSize: 100
+  testNumWorkers: 0
+  trainBatchSize: 100
+  trainNumWorkers: 4
+dataConfig:
+  augment: false
+  imgSize: 224
+  loaderName: cub
+  projectDir: data/CUB_200_2011/dataset
+  testDir: data/CUB_200_2011/dataset/test_crop
+  trainDir: data/CUB_200_2011/dataset/train_crop
+dataDir: fill
+newRun: false
+runName: Resnet50
+serviceName: protopnet_basic
+settingsConfig:
+  PrototypeActivationFunction: log
+  backbone:
+    loadPath: null
+    name: resnet18
+    pretrained: true
+    prototypicalModel: protopnet
+  imgSize: 224
+  lossList:
+    clusterSep:
+      clusterWeight: 0.001
+      consider: false
+      sepWeight: -0.08
+    crossEntropy:
+      consider: true
+      weight: 1.0
+    l1:
+      consider: true
+      weight: 0.0001
+  numFeatures: 256
+  protoPNet:
+    H1: 1
+    W1: 1
+    classSpecific: true
+    numPrototypes: 2000
+  train:
+    evalEpoch: 1
+    gamma: 0.1
+    lrBlock: 0.001
+    lrLastLayer: 0.0005
+    lrNet: 0.0002
+    lrProto: 0.02
+    maxEpochs: 500
+    optimizer: Adam
+    pushStart: 5
+    saveEpoch: 5
+    seed: 4105
+    stepSize: 4
+    stepStart: 16
+    useTensorboard: true
+    warmEpochs: 5
+    weightDecay: 0.05
+  useCheckpointOptimizer: true
