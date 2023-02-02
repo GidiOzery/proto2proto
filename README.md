@@ -1,8 +1,9 @@
 # Grid search
 ## Executing a gridsearch
+The main branch was used for experimenting with the pretrained models on (https://github.com/cfchen-duke/ProtoPNet/issues/19). 
 
-
-<p> <b>Be sure to be on the gridsearch branch </b></p>
+The grid search code can be found on the gridsearch branch.
+For this do:
   Follow the usual setup (below), and then execute 
 ```
 sh lr_gridsearch.sh
@@ -10,6 +11,16 @@ sh lr_gridsearch.sh
 
 The hyperparameters are defined in main_search.py
   </p>
+  
+  
+  Comments about code from the main branch:
+  - in proto2proto/lib/__init__.py make sure to set correct booleans when running. It's described via comments in the code
+  - We made slight adjusments in the main branch when evaluating models. Pretrained resnet18 and resnet34 had different dimensions in their layers.
+    Hence in proto2proto/src/services/_evaluate/protopnet_evaluate.py we made this distinction when evaluating. You have to manually provide the number
+    of dimensions per teacher, student and kd model. In the YAML files we couldn't make a disctinction due to the original implementation.
+    
+  
+  
 
 
 # Proto2Proto [[arxiv](https://arxiv.org/abs/2204.11830)]
