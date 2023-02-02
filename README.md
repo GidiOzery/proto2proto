@@ -1,3 +1,13 @@
+# This branch details adds functionality to the proto2proto codebase to be able to conduct a gridsearch over training hyperparemeters.
+## Executing a gridsearch
+<p> Follow the usual setup (below), and then execute 
+```
+sh lr_gridsearch.sh
+```
+
+The hyperparameters are defined in main_search.py
+
+
 
 # Proto2Proto [[arxiv](https://arxiv.org/abs/2204.11830)]
 
