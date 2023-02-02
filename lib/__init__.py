@@ -84,15 +84,13 @@ def init_proto_model(manager, classes, backbone, declare_num_features=None):
     # and ofc set use_ptrained to true.
 
         # model.load_state_dict(torch.load("ResNet34_mod_layers.pt"))
-        # proto_vec = model.prototype_vectors
 
-
+        # load proto vectors
         model.load_state_dict(torch.load("ResNet18_003_mod_layers.pt"))
-        
-        # proto_vec_2 = model.prototype_vectors
-        # print("cheching if proto vectors have been updated")
-        # print(proto_vec == proto_vec_2)
-
+        # proto_vectors = torch.load("ResNet34.pth").prototype_vectors
+        proto_vectors = torch.load("ResNet18_003.pth").prototype_vectors
+        # update proto vectors
+        model.prototype_vectors = proto_vectors
 
         checkpoint = None
 
